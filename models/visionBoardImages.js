@@ -8,9 +8,24 @@ var sequelize = require("../config/connection");
 
 // Creates a "Chirp" model that matches up with DB
 var VisionBoardImages = sequelize.define("images", {
+  id: {
+    defaultValue: Sequelize.INTEGER,
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true,
+  },
   url: Sequelize.STRING,
   type: Sequelize.STRING,
   createdBy: Sequelize.INTEGER,
+  createdAt: {
+    type: Sequelize.DataTypes.DATE,
+    defaultValue: Sequelize.literal(`NOW()`),
+  },
+  updatedAt: {
+    type: Sequelize.DataTypes.DATE,
+    defaultValue: Sequelize.literal(`NOW()`),
+  },
 });
 
 // Syncs with DB
