@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS `vp-app`;
+CREATE DATABASE `vp-app`;
+
+
