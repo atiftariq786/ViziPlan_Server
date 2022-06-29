@@ -22,8 +22,6 @@ module.exports = function (app) {
       url: req.body.url,
       type: req.body.type,
       createdBy: req.body.createdBy,
-      createdAt: req.body.createdAt,
-      updatedAt: req.body.updatedAt,
     }).then(function (results) {
       res.json(results);
       console.log(results, "Output");

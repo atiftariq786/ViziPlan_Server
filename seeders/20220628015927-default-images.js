@@ -76,6 +76,56 @@ module.exports = {
           type: "generic",
           createdBy: 0,
         },
+        {
+          url: "https://wallpaperaccess.com/full/650127.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://i0.wp.com/cooldigital.photography/wp-content/uploads/2019/09/Inspirational-quote.jpg?resize=750%2C500&ssl=1",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://c0.wallpaperflare.com/preview/76/209/70/message-can-wall-quote.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://wallpaper.dog/large/897731.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://i.pinimg.com/originals/e9/4f/6b/e94f6b2ac6b4297a6f145e6bd62774ed.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://motivationalquoteforme.com/wp-content/uploads/Start-Working-on-the-life-that-you-want-TODAY-4K-HD-Wallpaper-MotivationalQuoteForMedotcom.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://www.teahub.io/photos/full/127-1274591_inspirational-motivational-4k-hd-desktop-wallpaper-motivational.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://i.pinimg.com/originals/1e/71/b7/1e71b7e80b9eece4cfa18f967e07750f.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://i.pinimg.com/originals/79/88/bc/7988bcb17f342500ac9afa9f923b4315.png",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://wallpaperaccess.com/full/5259315.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
       ],
       {}
     );
