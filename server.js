@@ -5,6 +5,7 @@
 // Dependencies
 // =============================================================
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
@@ -20,6 +21,21 @@ app.use(
     // credentials: true,
   })
 );
+
+app.use(
+  session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+      path: "/",
+      expires: 2592000000,
+      httpOnly: false,
+      encode: String,
+    },
+  })
+);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -27,8 +43,15 @@ app.use(bodyParser.json());
 // app.use(express.urlencoded({ extended: true }));
 // app.use(express.json());
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+//passport.use(new LocalStrategy(User.authenticate()));
+//passport.serializeUser(User.serializeUser());
+//passport.deserializeUser(User.deserializeUser());
+
 // Routes
-// =============================================================
+// ============================================================
 require("./routes/api-routes")(app);
 
 // Starts the server to begin listening
