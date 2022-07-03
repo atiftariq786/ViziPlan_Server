@@ -94,5 +94,14 @@ router.post("/signin", function (req, res, next) {
     }
   })(req, res, next);
 });
+//==========================================User Logout=====================================================
+router.get("/logout", function (req, res) {
+  console.log("trying to logout....");
+  req.session.destroy();
+  req.logout(function () {
+    console.log("Logging out now");
+    res.status(200).json({ success: true, message: "User logout" });
+  });
+});
 
 module.exports = router;
