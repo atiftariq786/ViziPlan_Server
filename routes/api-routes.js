@@ -1,6 +1,7 @@
 const express = require("express");
 let Images = require("../models/visionBoardImages");
 let SelectedImages = require("../models/visionBoardSelectedImages");
+let AddGoal = require("../models/addGoal.js");
 
 const router = express.Router();
 // ====================================VisionBoard Images and Quotes List Routes========================================
@@ -91,4 +92,19 @@ router.delete("/visionBoard/:id", function (req, res) {
   });
 });
 
+router.post("/goals/addGoal", function (req, res) {
+  console.log("Goal Data:");
+  console.log(req.body);
+  AddGoal.create({
+    id: req.body.id,
+    heading: req.body.heading,
+    url: req.body.url,
+    category: req.body.category,
+    description: req.body.description,
+    isPrivate: req.body.isPrivate,
+  }).then(function (results) {
+    res.json(results);
+    console.log(results, "AddGoal Output");
+  });
+});
 module.exports = router;

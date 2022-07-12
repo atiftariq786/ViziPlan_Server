@@ -13,9 +13,9 @@ const router = express.Router();
 router.post("/signup", function (req, res) {
   console.log("calling sign up");
 
-  const { email, password, firstname, lastname, username } = req.body;
+  const { email, password, firstname, lastname } = req.body;
 
-  if (!email || !password || !firstname || !lastname || !username) {
+  if (!email || !password || !firstname || !lastname) {
     return res.status(404).json({
       success: false,
       message: "User info not provided",
@@ -37,13 +37,9 @@ router.post("/signup", function (req, res) {
 
       var data = {
         email: email,
-
         password: userPassword,
-
         firstname,
-
         lastname,
-        username,
         lastLogin: new Date(),
       };
 
@@ -61,7 +57,7 @@ router.post("/signup", function (req, res) {
             console.log("Auth successfull");
             return res.status(201).json({
               success: true,
-              message: newUser.username,
+              message: newUser.email,
             });
           });
         }
@@ -79,7 +75,10 @@ router.post("/signin", function (req, res, next) {
 
     // user will be set to false, if not authenticated
     if (!user) {
-      res.status(401).json(info); //info contains the error message
+      res.status(401).json({
+        success: false,
+        message: "Couldn't find your email or password incorrect",
+      }); //info contains the error message
     } else {
       // if user authenticated maintain the session
       req.logIn(user, function () {
@@ -102,6 +101,14 @@ router.get("/logout", function (req, res) {
     console.log("Logging out now");
     res.status(200).json({ success: true, message: "User logout" });
   });
+});
+//==========================================
+router.post("/isLoggedIn", function (req, res) {
+  if (req.isAuthenticated()) {
+    res.send({ state: "success", user: req.user });
+  } else {
+    res.send({ state: "failure", user: null });
+  }
 });
 
 module.exports = router;

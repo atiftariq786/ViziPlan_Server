@@ -1,5 +1,4 @@
-// Dependencies
-// =============================================================
+// ============================Dependencies=================================
 const express = require("express");
 const uuid = require("uuid");
 const session = require("express-session");
@@ -13,8 +12,7 @@ const apiRoutes = require("./routes/api-routes");
 const middlewareAuth = require("./routes/utils");
 const cookieParser = require("cookie-parser");
 
-// Sets up the Express App
-// =============================================================
+// ==========================Sets up the Express App============================
 var app = express();
 
 var PORT = process.env.PORT || 3001;
@@ -49,9 +47,6 @@ app.use(
   })
 );
 
-// app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -60,16 +55,14 @@ require("./config/passport.js")(passport);
 //passport.serializeUser(User.serializeUser());
 //passport.deserializeUser(User.deserializeUser());
 
-// Routes
-// ============================================================
+// ============================Routes================================
 // require("./routes/api-routes")(app);
 // require("./routes/auth")(app, passport);
-
+//middlewareAuth.isLoggedIn,
 app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
 app.use("/auth", authRoutes);
 
-// Starts the server to begin listening
-// =============================================================
+// =================Starts the server to begin listening==============
 app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });

@@ -18,10 +18,6 @@ var User = sequelize.define("user", {
     notEmpty: true,
   },
 
-  username: {
-    type: Sequelize.TEXT,
-  },
-
   email: {
     type: Sequelize.STRING,
     validate: {
