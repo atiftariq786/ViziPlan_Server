@@ -15,11 +15,19 @@ var AddGoals = sequelize.define("goals", {
     primaryKey: true,
     autoIncrement: true,
   },
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
   heading: Sequelize.STRING,
   url: Sequelize.STRING,
   category: Sequelize.STRING,
   description: Sequelize.STRING,
   isPrivate: Sequelize.BOOLEAN,
+  completedAt: {
+    type: Sequelize.DataTypes.DATE,
+    defaultValue: null,
+  },
   createdAt: {
     type: Sequelize.DataTypes.DATE,
     defaultValue: Sequelize.literal(`NOW()`),

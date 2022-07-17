@@ -16,7 +16,10 @@ let VisionBoardSelectedImages = sequelize.define("selectedImages", {
     autoIncrement: true,
   },
   imageId: Sequelize.INTEGER,
-  userId: Sequelize.INTEGER,
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+  },
   url: Sequelize.STRING,
 
   createdAt: {

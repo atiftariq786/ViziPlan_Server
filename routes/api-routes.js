@@ -1,7 +1,9 @@
 const express = require("express");
 let Images = require("../models/visionBoardImages");
 let SelectedImages = require("../models/visionBoardSelectedImages");
-let AddGoal = require("../models/addGoal.js");
+let Goals = require("../models/goals.js");
+let Activities = require("../models/activities.js");
+var Sequelize = require("sequelize");
 
 const router = express.Router();
 // ====================================VisionBoard Images and Quotes List Routes========================================
@@ -10,6 +12,12 @@ router.get("/images/:type", function (req, res) {
   Images.findAll({
     where: {
       type: req.params.type,
+      [Sequelize.Op.or]: [
+        {
+          createdBy: 0,
+        },
+        { createdBy: req.user.id },
+      ],
     },
     order: [["createdAt", "DESC"]],
   }).then(function (results) {
@@ -25,7 +33,7 @@ router.post("/images/add", function (req, res) {
     id: req.body.id,
     url: req.body.url,
     type: req.body.type,
-    createdBy: req.body.createdBy,
+    createdBy: req.user.id,
   }).then(function (results) {
     res.json(results);
     console.log(results, "Output");
@@ -38,6 +46,7 @@ router.delete("/image/:id", function (req, res) {
   Images.destroy({
     where: {
       id: req.params.id,
+      createdBy: req.user.id,
     },
   }).then(function () {
     res.end();
@@ -50,7 +59,7 @@ router.post("/visionBoard/save", function (req, res) {
   SelectedImages.create({
     id: req.body.id,
     imageId: req.body.imageId,
-    userId: 0,
+    userId: req.user.id,
     url: req.body.url,
   }).then(function (results) {
     res.json(results);
@@ -62,7 +71,7 @@ router.get("/visionBoard/me", function (req, res) {
   console.log("getting call visionboard");
   SelectedImages.findAll({
     where: {
-      userId: 0,
+      userId: req.user.id,
     },
     order: [["createdAt", "DESC"]],
   }).then(function (results) {
@@ -86,25 +95,102 @@ router.delete("/visionBoard/:id", function (req, res) {
   SelectedImages.destroy({
     where: {
       imageId: req.params.id,
+      userId: req.user.id,
+    },
+  }).then(function () {
+    res.end();
+  });
+});
+// ====================================Goals Routes===========================================
+router.post("/goals/addGoal", function (req, res) {
+  console.log("Goal Data:");
+  console.log(req.body);
+  console.log(req.user.id, "User ID backend");
+  Goals.create({
+    id: req.body.id,
+    userId: req.user.id,
+    heading: req.body.heading,
+    url: req.body.url,
+    category: req.body.category,
+    description: req.body.description,
+    isPrivate: req.body.isPrivate,
+    //.then
+  }).then(function (results) {
+    //condition
+    res.json(results);
+    console.log(results, "AddGoal Output");
+  });
+});
+
+router.get("/goals/:type", function (req, res) {
+  if (req.params.type === "completed") {
+    Goals.findAll({
+      where: { completedAt: { [Sequelize.Op.not]: null }, userId: req.user.id },
+    }).then(function (result) {
+      console.log(result);
+      res.json(result);
+    });
+  }
+  if (req.params.type === "incomplete") {
+    Goals.findAll({ where: { completedAt: null, userId: req.user.id } }).then(
+      function (result) {
+        console.log(result);
+        res.json(result);
+      }
+    );
+  }
+});
+
+router.delete("/goals/:id", function (req, res) {
+  console.log("Selected goals ID:");
+  console.log(req.params.id);
+  Goals.destroy({
+    where: {
+      id: req.params.id,
+      userId: req.user.id,
     },
   }).then(function () {
     res.end();
   });
 });
 
-router.post("/goals/addGoal", function (req, res) {
+router.put("/goals/updateGoal/:id", function (req, res) {
   console.log("Goal Data:");
   console.log(req.body);
-  AddGoal.create({
-    id: req.body.id,
-    heading: req.body.heading,
-    url: req.body.url,
-    category: req.body.category,
-    description: req.body.description,
-    isPrivate: req.body.isPrivate,
-  }).then(function (results) {
-    res.json(results);
-    console.log(results, "AddGoal Output");
-  });
+
+  Goals.update(
+    {
+      heading: req.body.heading,
+      url: req.body.url,
+      category: req.body.category,
+      description: req.body.description,
+      isPrivate: req.body.isPrivate,
+    },
+    { where: { id: req.params.id, userId: req.user.id } }
+  )
+    .then(function (goalUpdated) {
+      res.json(goalUpdated);
+    })
+    .catch((err) => console.log(err));
 });
+//====================================================================
+router.put("/goals/completeGoal/:id", function (req, res) {
+  console.log("Goal Data:");
+  console.log(req.params.id, "Backend: Id coming from client side");
+  //Sequelize.NOW
+  Goals.update(
+    {
+      completedAt: Date(),
+    },
+    { where: { id: req.params.id, userId: req.user.id } }
+  )
+    .then(function () {
+      res.status(200).json({
+        status: 200,
+        message: "Completed Goal successfully updated!",
+      });
+    })
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;
