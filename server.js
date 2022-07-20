@@ -59,7 +59,7 @@ require("./config/passport.js")(passport);
 // require("./routes/api-routes")(app);
 // require("./routes/auth")(app, passport);
 //middlewareAuth.isLoggedIn,
-app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
+app.use("/api", apiRoutes);
 app.use("/auth", authRoutes);
 
 // =================Starts the server to begin listening==============

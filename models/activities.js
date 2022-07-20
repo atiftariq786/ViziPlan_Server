@@ -23,4 +23,4 @@ let Activities = sequelize.define("activities", {
 //Sync with DB
 Activities.sync();
 
-module.export = Activities;
+module.exports = Activities;

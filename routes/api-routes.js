@@ -116,9 +116,20 @@ router.post("/goals/addGoal", function (req, res) {
     isPrivate: req.body.isPrivate,
     //.then
   }).then(function (results) {
-    //condition
-    res.json(results);
-    console.log(results, "AddGoal Output");
+    if (req.body.isPrivate === false) {
+      return Activities.create({
+        id: req.body.id,
+        firstname: req.user.firstname,
+        action: "created",
+        goalHeading: req.body.heading,
+        createdAt: Date(),
+      }).then(function (results) {
+        res.json(results);
+      });
+    } else {
+      res.json(results);
+      console.log(results, "AddGoal Output");
+    }
   });
 });
 
@@ -139,6 +150,25 @@ router.get("/goals/:type", function (req, res) {
       }
     );
   }
+  if (req.params.type === "allGoals") {
+    Goals.findAll({
+      where: { userId: req.user.id },
+    }).then(function (result) {
+      console.log(result);
+      res.json(result);
+    });
+  }
+});
+
+router.get("/activities", function (req, res) {
+  console.log("getting call");
+  Activities.findAll({
+    order: [["createdAt", "DESC"]],
+    limit: 100,
+  }).then(function (results) {
+    // results are available to us inside the .then
+    res.json(results);
+  });
 });
 
 router.delete("/goals/:id", function (req, res) {
@@ -184,11 +214,21 @@ router.put("/goals/completeGoal/:id", function (req, res) {
     },
     { where: { id: req.params.id, userId: req.user.id } }
   )
-    .then(function () {
-      res.status(200).json({
-        status: 200,
-        message: "Completed Goal successfully updated!",
-      });
+    .then(function (results) {
+      if (req.body.isPrivate === false) {
+        return Activities.create({
+          id: req.body.id,
+          firstname: req.user.firstname,
+          action: "completed",
+          goalHeading: req.body.heading,
+          createdAt: Date(),
+        }).then(function (results) {
+          res.json(results);
+        });
+      } else {
+        res.json(results);
+        console.log(results, "Completed goal result");
+      }
     })
     .catch((err) => console.log(err));
 });
