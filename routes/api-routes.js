@@ -233,4 +233,81 @@ router.put("/goals/completeGoal/:id", function (req, res) {
     .catch((err) => console.log(err));
 });
 
+router.get("/analytics/allGoalsCreated", function (req, res) {
+  console.log("Goal Data:");
+
+  Goals.findAll()
+    .then(function (allGoals) {
+      const d = new Date();
+      d.setFullYear(d.getFullYear());
+      d.setMonth(0);
+      d.setDate(1);
+
+      let filteredGoalsDateForCompletedAt = allGoals.filter(
+        (goal) => new Date(goal.completedAt) >= d
+      );
+      let filteredGoalsDateForCreatedAt = allGoals.filter(
+        (goal) => new Date(goal.createdAt) >= d
+      );
+      console.log(filteredGoalsDateForCompletedAt, "Result filtered array");
+
+      const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      let counter = {};
+      for (let i = 0; i < months.length; i++) {
+        counter[months[i]] = { completed: 0, created: 0 };
+      }
+
+      for (let i = 0; i < filteredGoalsDateForCompletedAt.length; i++) {
+        let date = new Date(filteredGoalsDateForCompletedAt[i].completedAt);
+        let monthNum = date.getMonth();
+        let month = months[monthNum];
+
+        console.log(month, "Result for month");
+        if (counter[month]) {
+          counter[month].completed += 1;
+        }
+      }
+
+      for (let i = 0; i < filteredGoalsDateForCreatedAt.length; i++) {
+        let date = new Date(filteredGoalsDateForCreatedAt[i].createdAt);
+        let monthNum = date.getMonth();
+        let month = months[monthNum];
+
+        console.log(month, "Result for month");
+        if (counter[month]) {
+          counter[month].created += 1;
+        }
+      }
+      console.log(counter, "Result of counter in month chart");
+
+      const data = [];
+
+      Object.entries(counter).forEach(([key, value]) => {
+        data.push({
+          name: key,
+          completed: value.completed,
+          created: value.created,
+        });
+      });
+
+      console.log(data);
+      res.json(data);
+    })
+    .catch((err) => console.log(err));
+});
+
 module.exports = router;
