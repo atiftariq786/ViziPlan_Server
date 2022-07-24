@@ -136,23 +136,32 @@ router.post("/goals/addGoal", function (req, res) {
 router.get("/goals/:type", function (req, res) {
   if (req.params.type === "completed") {
     Goals.findAll({
-      where: { completedAt: { [Sequelize.Op.not]: null }, userId: req.user.id },
+      where: {
+        completedAt: { [Sequelize.Op.not]: null },
+        userId: req.user.id,
+      },
+      order: [["createdAt", "DESC"]],
     }).then(function (result) {
       console.log(result);
       res.json(result);
     });
   }
   if (req.params.type === "incomplete") {
-    Goals.findAll({ where: { completedAt: null, userId: req.user.id } }).then(
-      function (result) {
-        console.log(result);
-        res.json(result);
-      }
-    );
+    Goals.findAll({
+      where: {
+        completedAt: null,
+        userId: req.user.id,
+      },
+      order: [["createdAt", "DESC"]],
+    }).then(function (result) {
+      console.log(result);
+      res.json(result);
+    });
   }
   if (req.params.type === "allGoals") {
     Goals.findAll({
       where: { userId: req.user.id },
+      order: [["createdAt", "DESC"]],
     }).then(function (result) {
       console.log(result);
       res.json(result);

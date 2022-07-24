@@ -121,10 +121,9 @@ router.post("/signup", function (req, res) {
             });
 
             console.log("Auth successfull");
-            return res.status(201).json({
-              success: true,
-              message: newUser.email,
-            });
+            return res
+              .status(201)
+              .json({ email, lastname, firstname, success: true });
           });
         }
       });
