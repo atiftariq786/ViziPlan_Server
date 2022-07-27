@@ -6,12 +6,11 @@ const session = require("express-session");
 const passport = require("passport");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./routes/auth");
 const apiRoutes = require("./routes/api-routes");
 const middlewareAuth = require("./routes/utils");
-const cookieParser = require("cookie-parser");
-
 // ==========================Sets up the Express App============================
 var app = express();
 
@@ -59,7 +58,7 @@ require("./config/passport.js")(passport);
 // require("./routes/api-routes")(app);
 // require("./routes/auth")(app, passport);
 //middlewareAuth.isLoggedIn,
-app.use("/api", apiRoutes);
+app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
 app.use("/auth", authRoutes);
 
 // =================Starts the server to begin listening==============

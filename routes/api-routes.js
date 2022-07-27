@@ -1,11 +1,12 @@
 const express = require("express");
+const router = express.Router();
+const Sequelize = require("sequelize");
+
 let Images = require("../models/visionBoardImages");
 let SelectedImages = require("../models/visionBoardSelectedImages");
 let Goals = require("../models/goals.js");
 let Activities = require("../models/activities.js");
-var Sequelize = require("sequelize");
 
-const router = express.Router();
 // ====================================VisionBoard Images and Quotes List Routes========================================
 router.get("/images/:type", function (req, res) {
   console.log("getting call");

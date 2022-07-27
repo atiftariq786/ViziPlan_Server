@@ -1,4 +1,4 @@
-isLoggedIn = (req, res, next) => {
+const isLoggedIn = (req, res, next) => {
   console.log(req.isAuthenticated(), "isAuthenticated");
   if (req.isAuthenticated()) return next();
 
