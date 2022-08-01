@@ -18,8 +18,8 @@ var PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    //origin: "https://atiftariq786.github.io",
-    origin: "http://localhost:3000",
+    origin: "https://atiftariq786.github.io",
+    //origin: "http://localhost:3000",
     credentials: true,
   })
 );
