@@ -73,6 +73,7 @@ app.use(function (req, res, next) {
     "Access-Control-Allow-Headers",
     "X-Requested-With,content-type"
   );
+  res.setHeader("Access-Control-Expose-Headers", "Set-Cookie");
   next();
 });
 app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
