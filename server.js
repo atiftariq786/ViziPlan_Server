@@ -62,6 +62,19 @@ require("./config/passport.js")(passport);
 // require("./routes/api-routes")(app);
 // require("./routes/auth")(app, passport);
 //middlewareAuth.isLoggedIn,
+
+// Add headers before the routes are defined
+app.use(function (req, res, next) {
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "X-Requested-With,content-type"
+  );
+  next();
+});
 app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
 app.use("/auth", authRoutes);
 
