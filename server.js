@@ -45,6 +45,7 @@ app.use(
       httpOnly: false,
       encode: String,
       sameSite: "none",
+      secure: true,
     },
   })
 );
