@@ -10,7 +10,7 @@ const env = process.env.NODE_ENV;
 let configToUse = config.development;
 
 if (env === "production") {
-  let configToUse = config.production;
+  configToUse = config.production;
 }
 
 // Creates mySQL connection using Sequelize, the empty string in the third argument spot is our password.
