@@ -44,6 +44,7 @@ app.use(
       expires: 2592000000,
       httpOnly: false,
       encode: String,
+      sameSite: "none",
     },
   })
 );
