@@ -44,12 +44,12 @@ app.use(
       expires: 2592000000,
       httpOnly: false,
       encode: String,
-      sameSite: "none",
-      secure: true,
-      domain:
-        process.env.NODE_ENV === "production"
-          ? "github.io"
-          : "http://localhost:3000",
+      // sameSite: "none",
+      // secure: true,
+      // domain:
+      //   process.env.NODE_ENV === "production"
+      //     ? "github.io"
+      //     : "http://localhost:3000",
     },
   })
 );
