@@ -46,6 +46,10 @@ app.use(
       encode: String,
       sameSite: "none",
       secure: true,
+      domain:
+        process.env.NODE_ENV === "production"
+          ? "github.io"
+          : "http://localhost:3000",
     },
   })
 );
