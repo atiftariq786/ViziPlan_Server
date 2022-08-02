@@ -20,7 +20,7 @@ app.use(
   cors({
     origin:
       process.env.NODE_ENV === "production"
-        ? "https://vizi-plan-fe.herokuapp.com/"
+        ? "https://vizi-plan-fe.herokuapp.com"
         : "http://localhost:3000",
     credentials: true,
   })
