@@ -78,7 +78,6 @@ app.use(function (req, res, next) {
     "X-Requested-With,content-type"
   );
   res.setHeader("Access-Control-Expose-Headers", "Set-Cookie");
-  req["sessionCookies"].secure = true;
   next();
 });
 app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
