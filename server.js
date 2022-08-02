@@ -45,7 +45,7 @@ app.use(
       httpOnly: false,
       encode: String,
       sameSite: "none",
-      secure: true,
+      secure: false,
       domain:
         process.env.NODE_ENV === "production"
           ? "herokuapp.com"
@@ -78,6 +78,7 @@ app.use(function (req, res, next) {
     "X-Requested-With,content-type"
   );
   res.setHeader("Access-Control-Expose-Headers", "Set-Cookie");
+  req["sessionCookies"].secure = true;
   next();
 });
 app.use("/api", middlewareAuth.isLoggedIn, apiRoutes);
