@@ -17,12 +17,11 @@ var app = express();
 var PORT = process.env.PORT || 3001;
 const origin = [
   /^http:\/\/localhost:\d*$/,
-  /^https:\/\/.*\vizi-plan-fe.herokuapp\.com$/,
-  "https://vizi-plan-fe.herokuapp.com",
+  /^https:\/\/vizi-plan-fe.herokuapp\.com$/,
 ];
 app.use(
   cors({
-    origin,,
+    origin,
     credentials: true,
   })
 );
