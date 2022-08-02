@@ -39,13 +39,14 @@ app.use(
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true,
+    proxy: true,
     cookie: {
       path: "/",
       expires: 2592000000,
       httpOnly: false,
       encode: String,
       sameSite: "none",
-      secure: false,
+      secure: true,
       domain:
         process.env.NODE_ENV === "production"
           ? "vizi-plan-server.herokuapp.com"
