@@ -39,7 +39,6 @@ app.use(
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true,
-    proxy: true,
     cookie: {
       path: "/",
       expires: 2592000000,
