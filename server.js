@@ -48,7 +48,7 @@ app.use(
       secure: false,
       domain:
         process.env.NODE_ENV === "production"
-          ? "herokuapp.com"
+          ? "vizi-plan-fe.herokuapp.com"
           : "localhost:3000",
     },
   })
