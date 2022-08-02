@@ -353,6 +353,86 @@ module.exports = {
           type: "quotes",
           createdBy: 0,
         },
+        {
+          url: "https://www.davestravelpages.com/wp-content/uploads/2014/10/Cycling-Quotes-18.png",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://wander-lush.org/wp-content/uploads/2021/07/Quotes-about-hiking-trekking-captions-CP-2.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://1.bp.blogspot.com/-RnFeAiDdEqE/Xs4f5uDPc5I/AAAAAAAAsjQ/q_fSX4-5m2AKR_-N3VsUq5XRl0CVkyoXQCLcBGAsYHQ/s1600/Marriage-quotes-that-will-inspire-you-and-touch-your-heart%2B%25281%2529-min.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://cdn.quotesgram.com/img/73/36/1048578250-cooking_is_love_made_visible.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://mk0evermovedi574391x.kinstacdn.com/wp-content/uploads/2020/10/Personal-development-quotes-to-live-by_104.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "http://muhaise.com/wp-content/uploads/2014/08/58.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://quotefancy.com/media/wallpaper/3840x2160/1699923-Steve-Jobs-Quote-Learn-continually-There-s-always-one-more-thing.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://lesoned.com/wp-content/uploads/2019/05/LEARN-ANYTHING.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://i.pinimg.com/originals/f7/26/0a/f7260abe33a1683e8451b82ef478a2da.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://www.success.com/wp-content/uploads/legacy/sites/default/files/new2.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://boomsumo.com/wp-content/uploads/2017/10/7-Great-Inspirational-Quotes-motivation-To-Help-You-Live-Your-Best-Life.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://www.brainyreaders.com/wp-content/uploads/2019/10/Motivational-Life-Quote.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://i.pinimg.com/736x/fe/e0/ab/fee0ab853c49511728590db41084bf2a--failure-quotes-positive-motivational-quotes.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://thumbs.dreamstime.com/b/motivational-quote-poster-inspirational-unknown-source-vintage-blue-sky-light-clouds-background-53334942.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://www.brainyreaders.com/wp-content/uploads/2019/12/Adventure-Quotes.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
+        {
+          url: "https://one-week-in.com/wp-content/uploads/2019/10/quote-adventure-is-waiting-you.jpg",
+          type: "quotes",
+          createdBy: 0,
+        },
       ],
       {}
     );
