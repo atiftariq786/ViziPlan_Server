@@ -243,7 +243,7 @@ router.put("/goals/completeGoal/:id", function (req, res) {
     .catch((err) => console.log(err));
 });
 
-router.get("/goals/allGoalsCreated", function (req, res) {
+router.get("/goals/usersGoalsData", function (req, res) {
   console.log("Goal Data:");
 
   Goals.findAll()
