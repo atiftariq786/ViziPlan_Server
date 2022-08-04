@@ -29,7 +29,6 @@ router.get("/images/:type", function (req, res) {
 
 router.post("/images/add", function (req, res) {
   console.log("Image Data:");
-  console.log(req.body);
   Images.create({
     id: req.body.id,
     url: req.body.url,
@@ -37,13 +36,11 @@ router.post("/images/add", function (req, res) {
     createdBy: req.user.id,
   }).then(function (results) {
     res.json(results);
-    console.log(results, "Output");
   });
 });
 
 router.delete("/image/:id", function (req, res) {
   console.log("Image ID:");
-  console.log(req.params.id);
   Images.destroy({
     where: {
       id: req.params.id,
@@ -64,7 +61,6 @@ router.post("/visionBoard/save", function (req, res) {
     url: req.body.url,
   }).then(function (results) {
     res.json(results);
-    console.log(results, "Selected Images Output");
   });
 });
 
@@ -76,9 +72,7 @@ router.get("/visionBoard/me", function (req, res) {
     },
     order: [["createdAt", "DESC"]],
   }).then(function (results) {
-    console.log("then");
     const imageIds = results.map((result) => result.imageId);
-    console.log({ imageIds });
     return Images.findAll({
       where: {
         id: imageIds,
@@ -105,8 +99,7 @@ router.delete("/visionBoard/:id", function (req, res) {
 // ====================================Goals Routes===========================================
 router.post("/goals/addGoal", function (req, res) {
   console.log("Goal Data:");
-  console.log(req.body);
-  console.log(req.user.id, "User ID backend");
+
   Goals.create({
     id: req.body.id,
     userId: req.user.id,
@@ -129,7 +122,6 @@ router.post("/goals/addGoal", function (req, res) {
       });
     } else {
       res.json(results);
-      console.log(results, "AddGoal Output");
     }
   });
 });
@@ -143,7 +135,6 @@ router.get("/goals/:type", function (req, res) {
       },
       order: [["createdAt", "DESC"]],
     }).then(function (result) {
-      console.log(result);
       res.json(result);
     });
   }
@@ -155,7 +146,6 @@ router.get("/goals/:type", function (req, res) {
       },
       order: [["createdAt", "DESC"]],
     }).then(function (result) {
-      console.log(result);
       res.json(result);
     });
   }
@@ -164,7 +154,6 @@ router.get("/goals/:type", function (req, res) {
       where: { userId: req.user.id },
       order: [["createdAt", "DESC"]],
     }).then(function (result) {
-      console.log(result);
       res.json(result);
     });
   }
@@ -182,8 +171,6 @@ router.get("/activities", function (req, res) {
 });
 
 router.delete("/goals/:id", function (req, res) {
-  console.log("Selected goals ID:");
-  console.log(req.params.id);
   Goals.destroy({
     where: {
       id: req.params.id,
@@ -237,13 +224,13 @@ router.put("/goals/completeGoal/:id", function (req, res) {
         });
       } else {
         res.json(results);
-        console.log(results, "Completed goal result");
+        //console.log(results, "Completed goal result");
       }
     })
     .catch((err) => console.log(err));
 });
 
-router.get("/goals/usersGoalsData", function (req, res) {
+router.get("/usersGoalsData", function (req, res) {
   console.log("Goal Data:");
 
   Goals.findAll()

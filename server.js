@@ -39,18 +39,18 @@ app.use(
     secret: "keyboard cat",
     resave: true,
     saveUninitialized: true,
-    proxy: true,
+    proxy: process.env.NODE_ENV === "production" ? true : false,
     cookie: {
       path: "/",
       expires: 2592000000,
       httpOnly: false,
       encode: String,
-      sameSite: "none",
-      secure: true,
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+      secure: process.env.NODE_ENV === "production" ? true : false,
       domain:
         process.env.NODE_ENV === "production"
           ? "vizi-plan-server.herokuapp.com"
-          : "localhost:3000",
+          : undefined,
     },
   })
 );
