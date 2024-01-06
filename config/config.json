@@ -18,6 +18,7 @@
     "password": "QjgXQZZtYLQHYSrQoZEmjWJa0PcvVHSk",
     "database": "viziplan_db_uyqf",
     "host": "dpg-cmc9jb5a73kc73a0je8g-a",
+    "port": 5432,
     "dialect": "postgres"
   }
 }
