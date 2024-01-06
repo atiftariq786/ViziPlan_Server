@@ -20,7 +20,7 @@ var sequelize = new Sequelize(
   configToUse.password,
   {
     host: configToUse.host,
-    port: 3306,
+    port: 5432,
     dialect: 'postgres',
     pool: {
       max: 5,
