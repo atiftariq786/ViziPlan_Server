@@ -46,7 +46,7 @@ app.use(
       secure: process.env.NODE_ENV === 'production' ? true : false,
       domain:
         process.env.NODE_ENV === 'production'
-          ? 'vizi-plan-server.herokuapp.com'
+          ? 'viziplan-server.onrender.com'
           : undefined,
     },
   })
